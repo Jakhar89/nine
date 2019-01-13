@@ -14,7 +14,7 @@ router.post('/', function(req, res) {
         var resArray=[];
 
         body.payload.forEach((el,i )=> {
-            if (el.drm == false && el.episodeCount && error){
+            if (el.drm !=='' && el.episodeCount && error){
                 error=false;
                 response={'result':resArray};         
             }
@@ -32,7 +32,6 @@ router.post('/', function(req, res) {
     if(error){
         res.status(400);
         response['error']='Could not decode request: JSON parsing failed';
-        response['id']=error;
     }
     res.send(response);
 });
