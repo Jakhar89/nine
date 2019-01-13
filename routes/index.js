@@ -8,16 +8,12 @@ router.get('/', function(req, res, next){
 });
 router.post('/', function(req, res) {
     var body = req.body;
-    var response={};
-    var error=true;
+    var resArray=[];
+    var response={'response':resArray}; 
+    
     if(body.payload){
-        var resArray=[];
-
-        body.payload.forEach((el,i )=> {
-            if (el.drm !=='' && el.episodeCount && error){
-                error=false;
-                response={'response':resArray};         
-            }
+        body.payload.forEach((el)=> {
+        
             if(el.drm == true && el.episodeCount > 0){
                 let resBody={'image':'','slug':'','title':''};
                 resBody.image=el.image.showImage;
@@ -26,12 +22,9 @@ router.post('/', function(req, res) {
 
                 resArray.push(resBody);
             }
+
         });
         
-    }
-    if(error){
-        res.status(400);
-        response['error']='Could not decode request: JSON parsing failed';
     }
     res.send(response);
 });

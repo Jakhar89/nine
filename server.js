@@ -13,6 +13,14 @@ app.engine('html', require('ejs').renderFile);
 
 // Body Parser MW
 app.use(bodyParser.json());
+app.use (function (err, req, res, next){
+    //Catch json error
+    if (err instanceof SyntaxError) {
+        let response={};
+        response['error']='Could not decode request: JSON parsing failed';
+        res.send(400,response);
+      }
+});
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', index);
