@@ -16,7 +16,7 @@ router.post('/', function(req, res) {
         body.payload.forEach((el,i )=> {
             if (el.drm !=='' && el.episodeCount && error){
                 error=false;
-                response={'result':resArray};         
+                response={'response':resArray};         
             }
             if(el.drm == true && el.episodeCount > 0){
                 let resBody={'image':'','slug':'','title':''};
