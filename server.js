@@ -4,7 +4,7 @@ var path = require('path');
 var index = require('./routes/index');
 var bodyParser = require('body-parser');
 
-var port = 3000;
+var port = process.env.PORT||3000;
 var app = express();
 
 //View Engine
