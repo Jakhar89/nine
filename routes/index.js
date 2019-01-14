@@ -6,6 +6,7 @@ router.get('/', function(req, res, next){
     //res.send('Hello');
     res.render('../index.html');
 });
+//Capture Post Request
 router.post('/', function(req, res) {
     var body = req.body;
     var resArray=[];
